@@ -1,0 +1,38 @@
+package ${packageName};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
+import ${table.basePackageName}.entity.${table.EntityClassName};
+import ${table.basePackageName}.entity.vo.${table.EntityClassName}VO;
+import ${table.basePackageName}.mapper.${table.EntityClassName}Mapper;
+import com.unicorn.wsp.common.result.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+/**
+* <p>
+    *  ${table.comment}服务接口
+    * </p>
+*
+* @author spark
+* @since 1.0
+*/
+@Service
+public interface ${table.ServiceClassName} extends IService<${table.EntityClassName}>  {
+
+    ${table.EntityClassName} getInfoById(Long id);
+
+    boolean save(${table.EntityClassName}VO dto);
+
+    boolean updateById(${table.EntityClassName}VO dto);
+
+    boolean removeById(Long id);
+
+    IPage<${table.EntityClassName}> page(${table.EntityClassName}VO dto);
+
+
+}
+

@@ -1,0 +1,40 @@
+package com.unicorn.wsp.entity.vo;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import com.unicorn.wsp.common.base.BasePageDto;
+
+/**
+* ${table.comment}
+*
+* @Author spark
+* @Version 1.0
+*/
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value="${table.comment}",description="${table.comment}")
+public class ${table.ClassName}VO extends BasePageDto{
+
+#foreach ($column in $table.EnumColumns)
+public static enum $column.SimpleJavaTypeName {
+    #foreach ($value in $column.EnumValues)
+        $value#if( $foreach.hasNext ),#end
+
+    #end
+}
+
+#end
+#foreach ($column in $table.Columns)
+
+    @ApiModelProperty(value="${column.comment}")
+    private $column.SimpleJavaTypeName ${column.FieldName}#if ($column.DefaultValue) = ${column.DefaultValueCode}#end;
+
+#end
+
+}

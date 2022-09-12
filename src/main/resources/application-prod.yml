@@ -1,0 +1,63 @@
+
+server:
+  port: 9209
+  servlet:
+    context-path: /wsp-boot
+
+
+spring:
+  redis:
+    #host: 1.14.68.37
+    #host: 42.193.118.43
+    #host: 47.93.51.187
+    host: 127.0.0.1
+    port: 6379
+    password: 123@qweQWE
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 3
+        max-wait: 1000ms
+      shutdown-timeout: 100ms
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/welfare_shopping_platform?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL&allowMultiQueries=true
+    username: root
+    password: 123@qweQWE
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: C_HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+pagehelper:
+  reasonable: true
+
+upload:
+  dir: /root/welfare_shopping_platform/upload/
+  path: /pics/
+download:
+  dir: /root/welfare_shopping_platform/download/template.xlsx
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #  id可以为空（主键不叫id，又指定了@TableId，主键是自增不需要自己赋值
+  global-config:
+    db-config:
+      id-type: 0
+#  type-aliases-package: com.unicorn.wsp.bean
+
+exceptionHandler: 0
+
+
+
+
+

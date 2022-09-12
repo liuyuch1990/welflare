@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unicorn.wsp.mapper.WspGiftCardMapper ">
+
+<!--    <select id="queryCardInfoList" resultType="map">-->
+<!--        select-->
+<!--        g.gift_card_num,-->
+<!--        g.gift_card_name,-->
+<!--        g.quota_multiple,-->
+<!--        g.valid_date,-->
+<!--        g.is_use,-->
+<!--        g.is_true,-->
+<!--        g.user_id,-->
+<!--        g.com_num,-->
+<!--        q.quota_a,-->
+<!--        q.quota_b,-->
+<!--        q.quota_c,-->
+<!--        q.quota_d,-->
+<!--        q.quota_e-->
+<!--        from-->
+<!--        wsp_gift_card g-->
+<!--        JOIN-->
+<!--        wsp_card_quota q on g.gift_card_name = q.card_name-->
+<!--        <where>-->
+<!--            -->
+<!--        </where>-->
+
+<!--    </select>-->
+
+</mapper>

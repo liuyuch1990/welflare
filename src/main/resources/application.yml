@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+logging:
+  level:
+    root: error
+    com.unicorn: debug
+    org.jinterop: off
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p})  %clr(%-40.40logger{39}){cyan}[%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+#    file: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p})  %clr(%-40.40logger{39}){cyan}[%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

@@ -1,0 +1,39 @@
+
+UUUUUUUU     UUUUUUUU NNNNNNNN        NNNNNNNN IIIIIIIIII        CCCCCCCCCCCCC      OOOOOOOOO      RRRRRRRRRRRRRRRRR    NNNNNNNN        NNNNNNNN
+U::::::U     U::::::U N:::::::N       N::::::N I::::::::I     CCC::::::::::::C    OO:::::::::OO    R::::::::::::::::R   N:::::::N       N::::::N
+U::::::U     U::::::U N::::::::N      N::::::N I::::::::I   CC:::::::::::::::C  OO:::::::::::::OO  R::::::RRRRRR:::::R  N::::::::N      N::::::N
+UU:::::U     U:::::UU N:::::::::N     N::::::N II::::::II  C:::::CCCCCCCC::::C O:::::::OOO:::::::O RR:::::R     R:::::R N:::::::::N     N::::::N
+ U:::::U     U:::::U  N::::::::::N    N::::::N   I::::I   C:::::C       CCCCCC O::::::O   O::::::O   R::::R     R:::::R N::::::::::N    N::::::N
+ U:::::D     D:::::U  N:::::::::::N   N::::::N   I::::I  C:::::C               O:::::O     O:::::O   R::::R     R:::::R N:::::::::::N   N::::::N
+ U:::::D     D:::::U  N:::::::N::::N  N::::::N   I::::I  C:::::C               O:::::O     O:::::O   R::::RRRRRR:::::R  N:::::::N::::N  N::::::N
+ U:::::D     D:::::U  N::::::N N::::N N::::::N   I::::I  C:::::C               O:::::O     O:::::O   R:::::::::::::RR   N::::::N N::::N N::::::N
+ U:::::D     D:::::U  N::::::N  N::::N:::::::N   I::::I  C:::::C               O:::::O     O:::::O   R::::RRRRRR:::::R  N::::::N  N::::N:::::::N
+ U:::::D     D:::::U  N::::::N   N:::::::::::N   I::::I  C:::::C               O:::::O     O:::::O   R::::R     R:::::R N::::::N   N:::::::::::N
+ U:::::D     D:::::U  N::::::N    N::::::::::N   I::::I  C:::::C               O:::::O     O:::::O   R::::R     R:::::R N::::::N    N::::::::::N
+ U::::::U   U::::::U  N::::::N     N:::::::::N   I::::I   C:::::C       CCCCCC O::::::O   O::::::O   R::::R     R:::::R N::::::N     N:::::::::N
+ U:::::::UUU:::::::U  N::::::N      N::::::::N II::::::II  C:::::CCCCCCCC::::C O:::::::OOO:::::::O RR:::::R     R:::::R N::::::N      N::::::::N
+  UU:::::::::::::UU   N::::::N       N:::::::N I::::::::I   CC:::::::::::::::C  OO:::::::::::::OO  R::::::R     R:::::R N::::::N       N:::::::N
+    UU:::::::::UU     N::::::N        N::::::N I::::::::I     CCC::::::::::::C    OO:::::::::OO    R::::::R     R:::::R N::::::N        N::::::N
+      UUUUUUUUU       NNNNNNNN         NNNNNNN IIIIIIIIII        CCCCCCCCCCCCC      OOOOOOOOO      RRRRRRRR     RRRRRRR NNNNNNNN         NNNNNNN
+
+                                      /|
+                                _(\_ / |
+                              ,((((^`\ |
+                             ((((   (6 \
+                           ,((((( ,     \
+       ,,,_               ,(((((   /"._   ,`,
+      ((((\\ ,...        ,((((    /     `-.-'
+      )))   ;'     `"'"'""((((    (
+     (((   /             (((       \
+      )) |                       |
+     ((   |         .        '      |
+     ))   \      _ '       `t    ,.')
+     (    |    y;- -,-""'"-.\    \/
+     )    / ./   ) /          `\   \
+        |./    ( (            / /'
+        ||      \\           //'|
+        ||       \\        _//'||
+        ||        ))      |_/   ||
+        \_\      |_/           ||
+        `'"                   \_\
+                             `'"

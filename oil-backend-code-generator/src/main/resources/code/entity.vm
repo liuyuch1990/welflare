@@ -1,0 +1,37 @@
+package com.unicorn.wsp.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import com.unicorn.wsp.common.annotation.Excel;
+import com.unicorn.wsp.common.base.BaseEntity;
+
+/**
+* ${table.comment}
+*
+* @Author spark
+* @Version 1.0
+*/
+@Data
+@EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "${table.name}", autoResultMap = true)
+public class ${table.ClassName} extends BaseEntity {
+
+
+#foreach ($column in $table.Columns)
+    $column.ColumnAnnotation
+    #foreach ($validation in $column.Validations)
+        $validation.Annotation
+    #end
+private $column.SimpleJavaTypeName ${column.FieldName}#if ($column.DefaultValue) = ${column.DefaultValueCode}#end;
+
+#end
+
+
+}
