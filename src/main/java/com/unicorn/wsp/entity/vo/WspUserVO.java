@@ -41,6 +41,9 @@ public class WspUserVO extends BasePageDto{
     @ApiModelProperty(value="手机号")
     private String userPhone;
 
+    @ApiModelProperty(value="体系/部门")
+    private String userDept;
+
 
     @ApiModelProperty(value="密码")
     private String userPwd;

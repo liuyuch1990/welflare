@@ -15,4 +15,6 @@ public class LoginVo {
 
     String giftCardNum;
 
+    String userDept;
+
 }

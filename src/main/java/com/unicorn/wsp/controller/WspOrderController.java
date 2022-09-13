@@ -308,6 +308,16 @@ public class WspOrderController
         return  ResultVo.failed("修改失败");
     }
 
+    @PostMapping("/rollBackOrder")
+    @ApiOperation(value = "退货", notes = "退货")
+    public ResultVo rollBackOrder(@RequestBody WspOrderVO wspOrderVO) {
+        boolean b = service.updateById(wspOrderVO);
+        if (b){
+            return  ResultVo.success();
+        }
+        return  ResultVo.failed("修改失败");
+    }
+
     @PostMapping("/createOrderCheck")
     protected ResultVo createOrderCheck(@RequestBody WspOrderVO wspOrderVO, HttpServletRequest request) {
         // 1 判断需求（下单只能选一个种类商品）是否启用

@@ -3,11 +3,13 @@ package com.unicorn.wsp.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.unicorn.wsp.entity.WspGiftCard;
+import com.unicorn.wsp.entity.WspUser;
 import com.unicorn.wsp.entity.vo.WspGiftCardVO;
 import com.unicorn.wsp.entity.zznvo.GiftCardPageVo;
 import com.unicorn.wsp.entity.zznvo.GiftCardVo;
 import com.unicorn.wsp.mapper.WspGiftCardMapper;
 import com.unicorn.wsp.common.result.Result;
+import com.unicorn.wsp.vo.LoginVo;
 import com.unicorn.wsp.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,7 +69,9 @@ public interface WspGiftCardService extends IService<WspGiftCard>  {
     int isUse(Integer cardId);
 
     // 临时 不让用户添加多张卡片
-    Integer onlyOneCard(String userId);
+    Integer onlyOneCard(String wspUser);
+
+    Integer onlyOneCard(LoginVo loginVo, String userId);
 
     // 取消订单后重置(礼品卡卡号，商品id，商品销量)
     boolean reSetCard(String cardNum);

@@ -222,6 +222,7 @@ public class WspUserController
             user.setIsDisable("0");
             user.setUserPhone(loginVo.getUserPhone());
             user.setUserId(uuid);
+            user.setUserDept(loginVo.getUserDept());
             user.setUserCom(loginVo.getUserCom());
             log.info("新用户添加 - {}", user);
 

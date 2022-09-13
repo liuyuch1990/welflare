@@ -17,10 +17,7 @@ import com.github.pagehelper.PageInfo;
 import com.unicorn.wsp.common.annotation.Excel;
 import com.unicorn.wsp.common.exception.BusinessRollbackException;
 import com.unicorn.wsp.common.result.Result;
-import com.unicorn.wsp.entity.WspCardQuota;
-import com.unicorn.wsp.entity.WspCardType;
-import com.unicorn.wsp.entity.WspGiftCard;
-import com.unicorn.wsp.entity.WspGoods;
+import com.unicorn.wsp.entity.*;
 import com.unicorn.wsp.entity.exportvo.WspGiftCardETO;
 import com.unicorn.wsp.entity.vo.WspGiftCardVO;
 import com.unicorn.wsp.entity.zznvo.GiftCardPageVo;
@@ -32,6 +29,7 @@ import com.unicorn.wsp.mapper.WspGoodsMapper;
 import com.unicorn.wsp.service.WspCardQuotaService;
 import com.unicorn.wsp.service.WspGiftCardService;
 import com.unicorn.wsp.vo.CardTypeQuota;
+import com.unicorn.wsp.vo.LoginVo;
 import com.unicorn.wsp.vo.PageVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -119,6 +117,24 @@ public class WspGiftCardServiceImpl extends ServiceImpl<WspGiftCardMapper,WspGif
         wrapper.eq(WspGiftCard::getUserId, userId);// 该用户的
         wrapper.eq(WspGiftCard::getIsTrue,"1");// 有效
         wrapper.eq(WspGiftCard::getIsUse,"1");// 绑定的
+        WspGiftCard card = cardMapper.selectOne(wrapper);
+        if(ObjectUtil.isNull(card)){
+            return 0;
+        }
+        return 1;
+    }
+
+    // 临时 不让用户添加多张卡片
+    public Integer onlyOneCard(LoginVo loginVo, String userId){
+        LambdaQueryWrapper<WspGiftCard> wrapper = new LambdaQueryWrapper<>();
+        wrapper.ne(WspGiftCard::getIsDel, "1");// 没删除的
+        wrapper.eq(WspGiftCard::getUserId, loginVo.getUserPhone());// 该用户的
+        wrapper.eq(WspGiftCard::getIsTrue,"1");// 有效
+        wrapper.eq(WspGiftCard::getIsUse,"1");// 绑定的
+        wrapper.eq(WspGiftCard::getUserPhone,userId);// 绑定的
+        wrapper.eq(WspGiftCard::getGiftCardNum,loginVo.getGiftCardNum());// 绑定的
+        wrapper.eq(WspGiftCard::getComNum,loginVo.getUserCom());// 绑定的
+
         WspGiftCard card = cardMapper.selectOne(wrapper);
         if(ObjectUtil.isNull(card)){
             return 0;

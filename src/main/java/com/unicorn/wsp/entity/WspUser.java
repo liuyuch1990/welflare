@@ -36,12 +36,15 @@ public class WspUser extends BaseEntity {
     private String userName;
 
     @Excel(columnNum = 4)
-    private String userPhone;
+    private String userDept;
 
     @Excel(columnNum = 5)
-    private String userPwd;
+    private String userPhone;
 
     @Excel(columnNum = 6)
+    private String userPwd;
+
+    @Excel(columnNum = 7)
     private String isDisable;
 
 

@@ -15,6 +15,8 @@ public class AccessToken {
 
     private String comNum;
 
+    private String deptNum;
+
     private int roleId;
 
 
