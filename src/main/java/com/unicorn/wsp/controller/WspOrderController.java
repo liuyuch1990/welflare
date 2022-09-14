@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -309,9 +311,45 @@ public class WspOrderController
     }
 
     @PostMapping("/rollBackOrder")
-    @ApiOperation(value = "退货", notes = "退货")
+    @ApiOperation(value = "退换货", notes = "退换货")
     public ResultVo rollBackOrder(@RequestBody WspOrderVO wspOrderVO) {
         boolean b = service.updateById(wspOrderVO);
+        if (b){
+            return  ResultVo.success();
+        }
+        return  ResultVo.failed("修改失败");
+    }
+
+    @PostMapping("/changeOrderAdmin")
+    @ApiOperation(value = "换货", notes = "换货")
+    public ResultVo revertOrder(@RequestBody WspOrderVO wspOrderVO) {
+        boolean b;
+        WspOrder wspOrderTemp = service.getInfoById(Long.parseLong(wspOrderVO.getOrderId().toString()));
+        if(wspOrderVO.getStatus().equals("4")) {//换货
+            wspOrderVO.setStatus("6");
+            b = service.updateById(wspOrderVO);
+            wspOrderTemp.setOrderId(null);
+            wspOrderTemp.setStatus("0");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+            wspOrderTemp.setOrderNumber(sdf.format(new Date()));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            wspOrderTemp.setOrderTime(format.format(new Date()));
+            service.save(wspOrderTemp);
+        }else{//退货
+            wspOrderVO.setStatus("5");
+            service.updateById(wspOrderVO);
+            if (ObjectUtil.isNotEmpty(wspOrderTemp.getCardNumber())){
+                wspGiftCardService.reSetCard(wspOrderTemp.getCardNumber());
+            }
+            List<OrderGoodsVo> orderGoodsVoList = JSONArray.parseArray(wspOrderTemp.getGoodsList(), OrderGoodsVo.class);
+            if (ObjectUtil.isNotEmpty(orderGoodsVoList)){
+                for (OrderGoodsVo orderGoodsVo : orderGoodsVoList) {
+                    System.out.println("(~(orderGoodsVo.a() - 1)) = " + (~(orderGoodsVo.getGoodsNum() - 1)));
+                    wspGoodsService.inventoryReduction(orderGoodsVo.getGoodsId(),(~(orderGoodsVo.getGoodsNum() - 1)) );
+                }
+            }
+            return  ResultVo.success();
+        }
         if (b){
             return  ResultVo.success();
         }
