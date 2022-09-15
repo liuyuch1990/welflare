@@ -41,6 +41,13 @@ public class WspAddrVO extends BasePageDto{
     @ApiModelProperty(value="省号")
     private String provinceCode;
 
+    @ApiModelProperty(value="员工号")
+    private String userNo;
+
+
+    @ApiModelProperty(value="员工姓名")
+    private String userName;
+
 
     @ApiModelProperty(value="市号")
     private String cityCode;

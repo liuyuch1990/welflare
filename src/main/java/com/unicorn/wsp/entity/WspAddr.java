@@ -57,6 +57,12 @@ public class WspAddr extends BaseEntity {
     @Excel(columnNum = 10)
     private String userId;
 
+    @Excel(columnNum = 11)
+    private String userNo;
+
+    @Excel(columnNum = 12)
+    private String userName;
+
 
 
 }
