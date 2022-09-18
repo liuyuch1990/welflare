@@ -1,6 +1,7 @@
 package com.unicorn.wsp.utils;
 
 import com.unicorn.wsp.common.exception.ParamException;
+import com.unicorn.wsp.vo.OrderQueryVo;
 import org.springframework.util.CollectionUtils;
 
 import javax.validation.ConstraintViolation;
@@ -38,5 +39,33 @@ public class ValidationUtil {
             throw new ParamException(errorMsgBuf.toString());
         }
     }
+
+    public static String transferStatus(String status){
+        String temp = "";
+        if (status.equals("0")){
+           temp = "待发货";
+        }
+        if (status.equals("1")){
+           temp = "已发货";
+        }
+        if (status.equals("2")){
+           temp = "已取消";
+        }
+        if (status.equals("3")){
+           temp = "待退货";
+        }
+        if (status.equals("4")){
+           temp = "待换货";
+        }
+        if (status.equals("5")){
+           temp = "已退货";
+
+        }
+        if (status.equals("6")){
+           temp = "已换货";
+        }
+        return temp;
+    }
+
 
 }

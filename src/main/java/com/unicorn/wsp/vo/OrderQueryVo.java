@@ -60,4 +60,22 @@ public class OrderQueryVo extends OrderListVo{
 
     @Excel(columnNum = 16)
     private String giftCardNumber;
+
+    @Excel(columnNum = 17)
+    private String stars;
+
+    @Excel(columnNum = 18)
+    private String comment;
+
+    @Excel(columnNum = 19)
+    private String rollReason;
+
+    @Excel(columnNum = 20)
+    private String rollPics;
+
+    @Excel(columnNum = 21)
+    private String appointment;
+
+    @Excel(columnNum = 22)
+    private String userDept;
 }

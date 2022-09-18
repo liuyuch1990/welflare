@@ -27,6 +27,7 @@ public class WspIndexPage extends BaseEntity {
 
 
     @Excel(columnNum = 0)
+    @TableId(value="index_id")
     private String indexId;
 
     @NotEmpty(message = "文字描述不能为空")

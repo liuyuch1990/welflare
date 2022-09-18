@@ -90,4 +90,28 @@ public class WspOrderBatchImportEto extends BaseRowModel implements Serializable
     @Excel(columnNum = 11)
     private String userPhone;
 
+    @ExcelProperty(value = "订单状态", index = 12)
+    @Excel(columnNum = 12)
+    private String status;
+
+    @ExcelProperty(value = "退换货原因", index = 13)
+    @Excel(columnNum = 13)
+    private String rollReason;
+
+    @ExcelProperty(value = "员工号", index = 14)
+    @Excel(columnNum = 14)
+    private String userNo;
+
+    @ExcelProperty(value = "员工姓名", index = 15)
+    @Excel(columnNum = 15)
+    private String userName;
+
+    @ExcelProperty(value = "体系", index = 16)
+    @Excel(columnNum = 16)
+    private String userDept;
+
+    @ExcelProperty(value = "退货预约时间", index = 17)
+    @Excel(columnNum = 17)
+    private String appointment;
+
 }

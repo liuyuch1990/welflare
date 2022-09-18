@@ -12,6 +12,7 @@ import com.unicorn.wsp.service.WspGiftCardService;
 import com.unicorn.wsp.service.WspGoodsService;
 import com.unicorn.wsp.utils.EasyExcelUtil;
 import com.unicorn.wsp.utils.TokenUtils;
+import com.unicorn.wsp.utils.ValidationUtil;
 import com.unicorn.wsp.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,20 +20,24 @@ import com.unicorn.wsp.common.base.BaseController;
 import com.unicorn.wsp.common.result.Result;
 import com.unicorn.wsp.entity.vo.WspOrderVO;
 import com.unicorn.wsp.service.WspOrderService;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @Api(tags = {""})
@@ -51,6 +56,14 @@ public class WspOrderController
 
     @Autowired
     DemandChange demandChange;
+
+    //文件上传目录
+    @Value("${upload.dir}")
+    private String uploadDirectory;
+
+    // 图片访问路径前缀
+    @Value("${upload.path}")
+    private String path;
 
 
     @PostMapping("/add")
@@ -87,6 +100,32 @@ public class WspOrderController
     }
 
 
+    // 上传图片 返回id
+    @PostMapping("/upload")
+    public ResultVo upload(@RequestParam MultipartFile file) throws IOException {
+
+        // 获取上传的文件名称，并结合存放路径，构建新的文件名称
+        String originalFilename = file.getOriginalFilename();
+
+        // 为防止文件名重名，拿到原文件名后对其进行替换
+        String suffix = FilenameUtils.getExtension(originalFilename);
+        String uuidPIC = UUID.randomUUID().toString().replaceAll("-", "");
+        String newFileName = uuidPIC + "." + suffix;
+
+        // 上传路径，默认是d:/upload
+        File uploadDir = new File(this.uploadDirectory);
+
+        // 判断路径是否存在，不存在则新创建一个
+        if(!uploadDir.exists()){
+            uploadDir.mkdir();
+        }
+
+        //创建目标文件
+        File newFile = new File(this.uploadDirectory,newFileName);
+        file.transferTo(newFile);
+        String picPath = path + newFileName;
+        return ResultVo.success(picPath);
+    }
 
     /**
      * 批量空发货
@@ -182,6 +221,7 @@ public class WspOrderController
 
         for (OrderQueryVo wspOrder : orderPageList) {
             //判断商品JSON是否为空
+            wspOrder.setStatus(ValidationUtil.transferStatus(wspOrder.getStatus()));
             if (ObjectUtil.isNotEmpty(wspOrder.getOrderGoods())){
                 String wuLiuNumber = "";
                 String wuLiuCompany = "";
@@ -241,6 +281,19 @@ public class WspOrderController
         return service.batchShipment(file);
     }
 
+    /**
+     * Status 0:待发货
+     * 1：已发货
+     * 2：取消订单
+     * 3：待退货
+     * 4：待换货
+     * 5：已退货
+     * 6：已换货
+     * 7：
+     * @param wspOrderVO
+     * @param request
+     * @return
+     */
     @PostMapping("/get/getOrder")
     @ApiOperation(value = "用户订单查询", notes = "用户订单查询")
     protected ResultVo getOrder(@RequestBody WspOrderVO wspOrderVO, HttpServletRequest request) {
@@ -320,16 +373,26 @@ public class WspOrderController
         return  ResultVo.failed("修改失败");
     }
 
+    @PostMapping("/addCommentOrReturnReason")
+    @ApiOperation(value = "退换货原因&评价", notes = "退换货&评价")
+    public ResultVo addComment(@RequestBody WspOrderVO wspOrderVO) {
+        boolean b = service.updateById(wspOrderVO);
+        if (b){
+            return  ResultVo.success();
+        }
+        return  ResultVo.failed("修改失败");
+    }
+
     @PostMapping("/changeOrderAdmin")
     @ApiOperation(value = "换货", notes = "换货")
     public ResultVo revertOrder(@RequestBody WspOrderVO wspOrderVO) {
         boolean b;
         WspOrder wspOrderTemp = service.getInfoById(Long.parseLong(wspOrderVO.getOrderId().toString()));
         if(wspOrderVO.getStatus().equals("4")) {//换货
-            wspOrderVO.setStatus("6");
+            wspOrderVO.setStatus("6");//已换货
             b = service.updateById(wspOrderVO);
             wspOrderTemp.setOrderId(null);
-            wspOrderTemp.setStatus("0");
+            wspOrderTemp.setStatus("0");//新增新订单 原有参数除订单号之外不变
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
             wspOrderTemp.setOrderNumber(sdf.format(new Date()));
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -12,6 +12,7 @@ import com.unicorn.wsp.common.consts.SwaggerTagConst;
 import com.unicorn.wsp.common.result.Result;
 import com.unicorn.wsp.entity.vo.WspIndexPageVO;
 import com.unicorn.wsp.service.WspIndexPageService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,14 +33,16 @@ public class WspIndexPageController
      * */
     @PostMapping("/addIndexInfo")
     public ResultVo addIndexInfo(@RequestBody WspIndexPage vo, HttpServletRequest request){
-        ValidationUtil.validateObject(vo);
+//        ValidationUtil.validateObject(vo);
 
         AccessToken token = TokenUtils.analyseRequest(request);
         String comNum = token.getComNum();
-        boolean exit = service.isExit(comNum);
-        if(exit) return ResultVo.failed("该公司已存在首页信息，请删除再尝试添加");
+//        boolean exit = service.isExit(comNum);
+//        if(exit) return ResultVo.failed("该公司已存在首页信息，请删除再尝试添加");
         vo.setComNum(comNum);
-        boolean save = service.save(vo);
+        WspIndexPage page = new WspIndexPage();
+        BeanUtils.copyProperties(vo,page);
+        boolean save = service.updateById(page);
         return save? ResultVo.success(): ResultVo.failed();
     }
 

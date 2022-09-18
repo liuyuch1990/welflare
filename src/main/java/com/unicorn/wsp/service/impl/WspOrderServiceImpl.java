@@ -445,6 +445,7 @@ public class WspOrderServiceImpl extends ServiceImpl<WspOrderMapper,WspOrder>
             WspUser user = wspUserService.getUserById(orderQueryVo.getUserId());
             if(ObjectUtils.isNotEmpty(user)){
                 orderQueryVo.setComNum(user.getUserCom());
+                orderQueryVo.setUserDept(user.getUserDept());
             }
 
             ArrayList<OrderGoodsVo> userList  = JSON.parseObject(record.getGoodsList(), new TypeReference<ArrayList<OrderGoodsVo>>(){});

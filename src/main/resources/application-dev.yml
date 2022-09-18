@@ -41,7 +41,7 @@ pagehelper:
   reasonable: true
 
 upload:
-  dir: D:/workspace/upload/wsp-boot/
+  dir: D:/amazon/
   path: /pics/
 download:
   dir: D:/workspace/download/wsp-boot/template.xlsx

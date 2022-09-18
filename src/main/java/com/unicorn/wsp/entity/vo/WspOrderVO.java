@@ -92,8 +92,18 @@ public class WspOrderVO extends BasePageDto{
 
     private String comNum;
 
+    private String stars;
 
+    private String comment;
 
+    private String rollReason;
 
+    private String rollPics;
+
+    private String appointment;
+
+    private String userNo;
+
+    private String userName;
 
 }
