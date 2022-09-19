@@ -78,4 +78,10 @@ public class OrderQueryVo extends OrderListVo{
 
     @Excel(columnNum = 22)
     private String userDept;
+
+    @Excel(columnNum = 23)
+    private String userNo;
+
+    @Excel(columnNum = 24)
+    private String userName;
 }
