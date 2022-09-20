@@ -114,4 +114,12 @@ public class WspOrderBatchImportEto extends BaseRowModel implements Serializable
     @Excel(columnNum = 17)
     private String appointment;
 
+    @ExcelProperty(value = "评价", index = 18)
+    @Excel(columnNum = 18)
+    private String comment;
+
+    @ExcelProperty(value = "评价星级", index = 19)
+    @Excel(columnNum = 19)
+    private String stars;
+
 }
